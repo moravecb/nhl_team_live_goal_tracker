@@ -3,8 +3,8 @@ Title: nhl_api_handler.py
 Author: Peyton Ball
 Creation Date: 02/08/2020
 Last Modified: 02/08/2020
-Purpose: Interacts directly with the NHL API found here:
-         https://github.com/peruukki/nhl-score-api
+Purpose: Interacts directly with the NHL API found at
+         https://nhl-score-api.herokuapp.com/
 '''
 # Import statements
 import requests
@@ -78,7 +78,7 @@ def fetch_update(team_abbrv):
                 try:
                     os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
                     os.system('clear')
-                    sys.exit("Exiting...")
+                    sys.exit()
                 except:
                     sys.exit("ERROR: Goalhorn .mp3 file couldn't be found.")
             else:
