@@ -45,12 +45,16 @@ def fetch_update(team_abbrv):
             print("| {} - Current Score: {} Goal(s) | {} left in the {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
             if team_score > goal_count and not is_initial_fetch:
                 player_name = game['goals'][-1]['scorer']['player']
-                player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
+                try:
+                    player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
+                except:
+                    player_goal_count = "N/A"
                 print("\n-----------------------------------------------------------------------------------")
                 print("GOAL!!! GOAL!!! GOAL!!! {} has scored, #{} for the season!".format(player_name, player_goal_count))
                 print("-----------------------------------------------------------------------------------\n")
                 try:
                     os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
+                    #os.system('afplay "{}" &> /dev/null & python3 lights_api_handler.py'.format(goal_horn)) # Plays goal horn & triggers lights
                     os.system('clear')
                 except:
                     print("ERROR: Goalhorn .mp3 file couldn't be found.")
@@ -76,18 +80,19 @@ def fetch_update(team_abbrv):
                 print("{} Won!!! | New Record: {}-{}-{} | Points From Playoff: {}".format(team_abbrv, team_wins, team_losses, team_ot, pts_from_playoff))
                 print("-----------------------------------------------------------------------------------\n")
                 try:
-                    os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
+                    os.system('afplay "{}" &> /dev/null & python3 lights_api_handler.py -t {}'.format(goal_horn, team_abbrv)) # Plays goal horn & triggers lights
+                    #os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
                     os.system('clear')
-                    sys.exit()
                 except:
                     sys.exit("ERROR: Goalhorn .mp3 file couldn't be found.")
             else:
                 print("\n-----------------------------------------------------------------------------------")
                 print("{} Lost!!! | New Record: {}-{}-{} | Points From Playoff: {}".format(team_abbrv, team_wins, team_losses, team_ot, pts_from_playoff))
                 print("-----------------------------------------------------------------------------------\n")
+            sys.exit("That's enough celebration for now! Exiting...")
 
         elif game['status']['state'] == "PREVIEW" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for games that haven't started yet
             sys.exit("INVALID: {} isn't playing currently. Check back later. Exiting...".format(team_abbrv))
 
     if team_is_playing == False:
-        sys.exit("{} can not be found for the remainder of today's games. Check back tomorrow. Exiting...".format(team_abbrv))
+        sys.exit("\n{} can not be found for the remainder of today's games. Check back tomorrow. Exiting...".format(team_abbrv))
