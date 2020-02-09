@@ -55,13 +55,14 @@ def fetch_update(team_abbrv):
             team_wins = game['currentStats']['records'][team_abbrv]['wins']
             team_losses = game['currentStats']['records'][team_abbrv]['losses']
             team_ot = game['currentStats']['records'][team_abbrv]['ot']
+            pts_from_playoff = game['currentStats']['standings'][team_abbrv]['pointsFromPlayoffSpot']
             for key in game['scores']:
                 if game['scores'][key] > winner_score:
                     winner = key
                     winner_score = game['scores'][key]
             if winner == team_abbrv:
                 print("\n-----------------------------------------------------------------------------------")
-                print("{} Won!!! | New Record: {}-{}-{}".format(team_abbrv, team_wins, team_losses, team_ot))
+                print("{} Won!!! | New Record: {}-{}-{} | Points From Playoff: {}".format(team_abbrv, team_wins, team_losses, team_ot, pts_from_playoff))
                 print("-----------------------------------------------------------------------------------\n")
                 try:
                     os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
@@ -71,7 +72,7 @@ def fetch_update(team_abbrv):
                     sys.exit("ERROR: Goalhorn .mp3 file couldn't be found.")
             else:
                 print("\n-----------------------------------------------------------------------------------")
-                print("{} Lost!!! | New Record: {}-{}-{}".format(team_abbrv, team_wins, team_losses, team_ot))
+                print("{} Lost!!! | New Record: {}-{}-{} | Points From Playoff: {}".format(team_abbrv, team_wins, team_losses, team_ot, pts_from_playoff))
                 print("-----------------------------------------------------------------------------------\n")
 
         elif game['status']['state'] == "PREVIEW" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for games that haven't started yet
