@@ -10,7 +10,7 @@ goal_count = 0
 is_initial_fetch = True
 goal_horn = ""
 
-def goal_scraper():
+def nhl_goal_tracker():
     global goal_horn
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--team', type=str, help="Enter team abbreviation.", default="NSH")
@@ -20,11 +20,11 @@ def goal_scraper():
     wait_time = args.refreshrate
     goal_horn = goal_horn_selector.get_goal_horn_file(team_name) # Gets goal horn file
 
-    print("Starting goal_scraper...\n")
+    print("Starting nhl_goal_tracker...\n")
     while True:
         print("Fetching at {}".format(str(dt.now()).split(".")[0]), end=" ") # Print time of fetch)
         nhl_api_handler.fetch_update(team_name)
         time.sleep(wait_time)
 
 if __name__ == '__main__':
-    goal_scraper()
+    nhl_goal_tracker()
