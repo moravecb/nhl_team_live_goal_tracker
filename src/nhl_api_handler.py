@@ -92,7 +92,7 @@ def fetch_update(team_abbrv):
             sys.exit("That's enough celebration for now! Exiting...")
 
         elif game['status']['state'] == "PREVIEW" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for games that haven't started yet
-            sys.exit("INVALID: {} isn't playing currently. Check back later. Exiting...".format(team_abbrv))
+            sys.exit("\nINVALID: {} isn't playing currently. Check back later. Exiting...".format(team_abbrv))
 
     if team_is_playing == False:
         sys.exit("\n{} can not be found for the remainder of today's games. Check back tomorrow. Exiting...".format(team_abbrv))
