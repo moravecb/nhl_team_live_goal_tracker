@@ -3,8 +3,9 @@ This tool actively fetches from a public API for updates on your team's goal and
 
 ## Parameters:
 - **-t (--team)**: Your team's abbreviation (e.g. NSH)
-- **-s (--seconds)**: The time to wait between each API request being made (e.g. 2)
+- **-r (--refreshrate)**: The time to wait before refreshing and creating a new API request (e.g. 2)
 
 ## Goal Horn Songs Disclaimer:
-"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use."
+- I do not own the rights to any goal horns uploaded to this repo. ALl rights are reserved by the respective owner.
+- Note: *"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use."*
 
