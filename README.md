@@ -3,7 +3,7 @@ This tool actively fetches from a public API for updates on your team's goal and
 
 ## Parameters:
 - **-t (--team)**: Your team's abbreviation (e.g. NSH)
-- **-s (--seconds)**: The time to wait between each API request being made (e.g. 2)
+- **-r (--refreshrate)**: The time to wait before refreshing and creating a new API request (e.g. 2)
 
 ## Goal Horn Songs Disclaimer:
 - I do not own the rights to any goal horns uploaded to this repo. ALl rights are reserved by the respective owner.
