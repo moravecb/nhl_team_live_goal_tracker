@@ -29,14 +29,18 @@ def fetch_update(team_abbrv):
         if game['status']['state'] == "LIVE" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # If team is playing
             team_is_playing = True
             team_score = game['scores'][team_abbrv]
-            print("{} - Current Score: {} Goal(s)\n".format(team_abbrv, team_score))
-
+            period_in_game = game['status']['progress']['currentPeriodOrdinal']
+            period_time_left = game['status']['progress']['currentPeriodTimeRemaining']['pretty']
+            print("| {} - Current Score: {} Goal(s) | {} left in the {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
             if team_score > goal_count and not is_initial_fetch:
-                print("------------------")
-                print("GOAL!!!!!")
-                print("------------------\n")
+                player_name = game['goals'][-1]['scorer']['player']
+                player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
+                print("\n-----------------------------------------------------------------------------------")
+                print("GOAL!!! GOAL!!! GOAL!!! {} has scored, #{} for the season!".format(player_name, player_goal_count))
+                print("-----------------------------------------------------------------------------------\n")
                 try:
-                    os.system('afplay "{}"'.format(goal_horn)) # Plays goal horn
+                    os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
+                    os.system('clear')
                 except:
                     print("ERROR: Goalhorn .mp3 file couldn't be found.")
                 goal_count = team_score # Updates global goal_count var to be new goal value
@@ -48,25 +52,33 @@ def fetch_update(team_abbrv):
         elif game['status']['state'] == "FINAL" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for winner of games that have ended
             winner_score = 0 # init value
             winner = "" # init value
+            team_wins = game['currentStats']['records'][team_abbrv]['wins']
+            team_losses = game['currentStats']['records'][team_abbrv]['losses']
+            team_ot = game['currentStats']['records'][team_abbrv]['ot']
             for key in game['scores']:
                 if game['scores'][key] > winner_score:
                     winner = key
                     winner_score = game['scores'][key]
             if winner == team_abbrv:
-                print("------------------")
-                print("{} Won!!!".format(team_abbrv))
-                print("------------------")
+                print("\n-----------------------------------------------------------------------------------")
+                print("{} Won!!! | New Record: {}-{}-{}".format(team_abbrv, team_wins, team_losses, team_ot))
+                print("-----------------------------------------------------------------------------------\n")
                 try:
-                    os.system('afplay "{}"'.format(goal_horn)) # Plays goal horn
+                    os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
+                    os.system('clear')
                     sys.exit("Exiting...")
                 except:
                     sys.exit("ERROR: Goalhorn .mp3 file couldn't be found.")
+            else:
+                print("\n-----------------------------------------------------------------------------------")
+                print("{} Lost!!! | New Record: {}-{}-{}".format(team_abbrv, team_wins, team_losses, team_ot))
+                print("-----------------------------------------------------------------------------------\n")
 
         elif game['status']['state'] == "PREVIEW" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for games that haven't started yet
             sys.exit("INVALID: {} isn't playing currently. Check back later. Exiting...".format(team_abbrv))
 
     if team_is_playing == False:
-        sys.exit("ERROR: {} can not be found for the remainder of today's games. Check back tomorrow. Exiting...".format(team_abbrv))
+        sys.exit("{} can not be found for the remainder of today's games. Check back tomorrow. Exiting...".format(team_abbrv))
 
 def goal_scraper():
     global goal_horn
@@ -80,7 +92,7 @@ def goal_scraper():
 
     print("Starting goal_scraper...\n")
     while True:
-        print("Fetching at {}".format(str(dt.now()).split(".")[0])) # Print time of fetch)
+        print("Fetching at {}".format(str(dt.now()).split(".")[0]), end=" ") # Print time of fetch)
         fetch_update(team_name)
         time.sleep(wait_time)
 
