@@ -6,7 +6,7 @@ Last Modified: 02/08/2020
 Purpose: Attempts to locate the goal horn for the team specified in the
          method's parameter.
 '''
-
+# Import statements
 import sys
 
 def get_goal_horn_file(team_abbrv):

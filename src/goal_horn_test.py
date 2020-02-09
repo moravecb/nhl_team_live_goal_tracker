@@ -6,7 +6,7 @@ Last Modified: 02/08/2020
 Purpose: Allows the user to enter a team abbreviation and test that the goal
          horn is accurate and can properly be located.
 '''
-
+# Import statements
 import os
 import goal_horn_selector
 import argparse

@@ -6,15 +6,21 @@ Last Modified: 02/08/2020
 Purpose: Interacts directly with the NHL API found here:
          https://github.com/peruukki/nhl-score-api
 '''
-
+# Import statements
 import requests
 import json
 import sys
 import os
+import goal_horn_selector
 
+# Init
 goal_count = 0
 is_initial_fetch = True
 goal_horn = ""
+
+def get_goal_horn(team_abbrv):
+    global goal_horn
+    goal_horn = goal_horn_selector.get_goal_horn_file(team_abbrv)
 
 def fetch_update(team_abbrv):
     # Pull in global vars

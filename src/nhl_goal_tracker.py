@@ -6,18 +6,13 @@ Last Modified: 02/08/2020
 Purpose: Main file to execute to track goals of your team and alert when
          they score.
 '''
-
+# Import statements
 import sys
 import time
 from datetime import datetime as dt
 import os
 import argparse
 import nhl_api_handler
-import goal_horn_selector
-
-goal_count = 0
-is_initial_fetch = True
-goal_horn = ""
 
 def nhl_goal_tracker():
     global goal_horn
@@ -27,9 +22,9 @@ def nhl_goal_tracker():
     args = parser.parse_args()
     team_name = args.team
     wait_time = args.refreshrate
-    goal_horn = goal_horn_selector.get_goal_horn_file(team_name) # Gets goal horn file
 
     print("Starting nhl_goal_tracker...\n")
+    nhl_api_handler.get_goal_horn(team_name) # Gets and sets goal horn for team specified
     while True:
         print("Fetching at {}".format(str(dt.now()).split(".")[0]), end=" ") # Print time of fetch)
         nhl_api_handler.fetch_update(team_name)
