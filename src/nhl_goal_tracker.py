@@ -1,3 +1,12 @@
+'''
+Title: nhl_goal_tracker.py
+Author: Peyton Ball
+Creation Date: 02/08/2020
+Last Modified: 02/08/2020
+Purpose: Main file to execute to track goals of your team and alert when
+         they score.
+'''
+
 import sys
 import time
 from datetime import datetime as dt

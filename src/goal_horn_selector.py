@@ -1,3 +1,12 @@
+'''
+Title: goal_horn_selector.py
+Author: Peyton Ball
+Creation Date: 02/08/2020
+Last Modified: 02/08/2020
+Purpose: Attempts to locate the goal horn for the team specified in the
+         method's parameter.
+'''
+
 import sys
 
 def get_goal_horn_file(team_abbrv):

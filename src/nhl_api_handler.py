@@ -1,3 +1,12 @@
+'''
+Title: nhl_api_handler.py
+Author: Peyton Ball
+Creation Date: 02/08/2020
+Last Modified: 02/08/2020
+Purpose: Interacts directly with the NHL API found here:
+         https://github.com/peruukki/nhl-score-api
+'''
+
 import requests
 import json
 import sys
