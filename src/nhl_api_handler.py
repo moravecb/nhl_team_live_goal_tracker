@@ -40,19 +40,8 @@ def fetch_update(team_abbrv):
         if game['status']['state'] == "LIVE" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # If team is playing
             team_is_playing = True
             team_score = game['scores'][team_abbrv]
-            #period_in_game = game['status']['progress']['currentPeriodOrdinal']
-            #period_time_left = game['status']['progress']['currentPeriodTimeRemaining']['pretty']
-            #if period_time_left != "END":
-                #print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
-            #else:
-                #print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             if team_score > goal_count and not is_initial_fetch:
-                #player_name = game['goals'][-1]['scorer']['player']
-                #try:
-                    #player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
-                #except:
-                    #player_goal_count = "N/A"
                 try:
                     #os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
                     os.system('afplay "{}" &> /dev/null & python3 lights_api_handler.py -t {}'.format(goal_horn, team_abbrv)) # Plays goal horn & triggers lights
@@ -60,7 +49,6 @@ def fetch_update(team_abbrv):
                 except:
                     print("ERROR: Goalhorn .mp3 file couldn't be found.")
                 print("\n-----------------------------------------------------------------------------------")
-                #print("GOAL!!! GOAL!!! GOAL!!! {} has scored, #{} for the season!".format(player_name, player_goal_count))
                 print("GOAL!!! GOAL!!! GOAL!!! {} has scored!".format(team_abbrv))
                 print("-----------------------------------------------------------------------------------\n")
                 goal_count = team_score # Updates global goal_count var to be new goal value
