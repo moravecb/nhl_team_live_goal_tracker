@@ -1,5 +1,5 @@
 '''
-Title: nhl_api_handler.py
+Title: deatiled_nhl_api_handler.py
 Author: Peyton Ball
 Creation Date: 02/08/2020
 Last Modified: 02/09/2020
@@ -45,9 +45,9 @@ def fetch_update(team_abbrv):
             period_in_game = game['status']['progress']['currentPeriodOrdinal']
             period_time_left = game['status']['progress']['currentPeriodTimeRemaining']['pretty']
             if period_time_left != "END":
-                print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
+                print("| {} - Current Score: {} Goal(s) | {} left in the {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
             else:
-                print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
+                print("| {} - Current Score: {} Goal(s) | {} of {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
             print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             if team_score > goal_count and not is_initial_fetch:
                 player_name = game['goals'][-1]['scorer']['player']
@@ -62,8 +62,7 @@ def fetch_update(team_abbrv):
                 except:
                     print("ERROR: Goalhorn .mp3 file couldn't be found.")
                 print("\n-----------------------------------------------------------------------------------")
-                #print("GOAL!!! GOAL!!! GOAL!!! {} has scored, #{} for the season!".format(player_name, player_goal_count))
-                print("GOAL!!! GOAL!!! GOAL!!! {} has scored!".format(team_abbrv))
+                print("GOAL!!! GOAL!!! GOAL!!! {} has scored, #{} for the season!".format(player_name, player_goal_count))
                 print("-----------------------------------------------------------------------------------\n")
                 goal_count = team_score # Updates global goal_count var to be new goal value
 

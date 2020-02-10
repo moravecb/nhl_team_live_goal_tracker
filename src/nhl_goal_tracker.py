@@ -13,21 +13,27 @@ from datetime import datetime as dt
 import os
 import argparse
 import nhl_api_handler
+import detailed_nhl_api_handler
 
 def nhl_goal_tracker():
     global goal_horn
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--team', type=str, help="Enter team abbreviation.", default="NSH")
     parser.add_argument('-r', '--refreshrate', type=int, help="Enter the time to wait before refreshing.", default=2)
+    parser.add_argument('-d', '--detailed', type=bool, help="Set to true if you want detailed info when fetching data.", default=False)
     args = parser.parse_args()
     team_name = args.team
     wait_time = args.refreshrate
+    is_detailed = False
 
     print("Starting nhl_goal_tracker...\n")
     nhl_api_handler.get_goal_horn(team_name) # Gets and sets goal horn for team specified
     while True:
         print("Fetching at {}".format(str(dt.now()).split(".")[0]), end=" ") # Print time of fetch)
-        nhl_api_handler.fetch_update(team_name)
+        if not is_detailed:
+            nhl_api_handler.fetch_update(team_name)
+        else:
+            detailed_nhl_api_handler.fetch_update(team_name)
         time.sleep(wait_time)
 
 if __name__ == '__main__':
