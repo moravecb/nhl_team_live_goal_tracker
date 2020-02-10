@@ -4,7 +4,9 @@ Author: Peyton Ball
 Creation Date: 02/08/2020
 Last Modified: 02/09/2020
 Purpose: Interacts directly with the NHL API found at
-         https://nhl-score-api.herokuapp.com/
+         https://nhl-score-api.herokuapp.com/ and displays details on
+         player who scored goal, which # of the season the goal was for that
+         player, and the time in the period on each update.
 '''
 # Import statements
 import requests
@@ -40,19 +42,19 @@ def fetch_update(team_abbrv):
         if game['status']['state'] == "LIVE" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # If team is playing
             team_is_playing = True
             team_score = game['scores'][team_abbrv]
-            #period_in_game = game['status']['progress']['currentPeriodOrdinal']
-            #period_time_left = game['status']['progress']['currentPeriodTimeRemaining']['pretty']
-            #if period_time_left != "END":
-                #print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
-            #else:
-                #print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
+            period_in_game = game['status']['progress']['currentPeriodOrdinal']
+            period_time_left = game['status']['progress']['currentPeriodTimeRemaining']['pretty']
+            if period_time_left != "END":
+                print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
+            else:
+                print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             if team_score > goal_count and not is_initial_fetch:
-                #player_name = game['goals'][-1]['scorer']['player']
-                #try:
-                    #player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
-                #except:
-                    #player_goal_count = "N/A"
+                player_name = game['goals'][-1]['scorer']['player']
+                try:
+                    player_goal_count = game['goals'][-1]['scorer']['seasonTotal']
+                except:
+                    player_goal_count = "N/A"
                 try:
                     #os.system('afplay "{}" &> /dev/null'.format(goal_horn)) # Plays goal horn
                     os.system('afplay "{}" &> /dev/null & python3 lights_api_handler.py -t {}'.format(goal_horn, team_abbrv)) # Plays goal horn & triggers lights
@@ -94,7 +96,7 @@ def fetch_update(team_abbrv):
                 print("\n-----------------------------------------------------------------------------------")
                 print("{} Lost!!! | New Record: {}-{}-{} | Points From Playoff: {}".format(team_abbrv, team_wins, team_losses, team_ot, pts_from_playoff))
                 print("-----------------------------------------------------------------------------------\n")
-            sys.exit("Thanks for checking in! Exiting...")
+            sys.exit("That's enough celebration for now! Exiting...")
 
         elif game['status']['state'] == "PREVIEW" and (game['teams']['away']['abbreviation'] == team_abbrv or game['teams']['home']['abbreviation'] == team_abbrv): # Checks for games that haven't started yet
             sys.exit("\nINVALID: {} isn't playing currently. Check back later. Exiting...".format(team_abbrv))
