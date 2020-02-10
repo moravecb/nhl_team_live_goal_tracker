@@ -24,7 +24,7 @@ def nhl_goal_tracker():
     args = parser.parse_args()
     team_name = args.team
     wait_time = args.refreshrate
-    is_detailed = False
+    is_detailed = args.detailed
 
     print("Starting nhl_goal_tracker...\n")
     nhl_api_handler.get_goal_horn(team_name) # Gets and sets goal horn for team specified

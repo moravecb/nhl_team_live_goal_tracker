@@ -48,7 +48,6 @@ def fetch_update(team_abbrv):
                 print("| {} - Current Score: {} Goal(s) | {} left in the {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
             else:
                 print("| {} - Current Score: {} Goal(s) | {} of {} period".format(team_abbrv, team_score, period_time_left, period_in_game), end="\r")
-            print("| {} - Current Score: {} Goal(s)".format(team_abbrv, team_score), end="\r")
             if team_score > goal_count and not is_initial_fetch:
                 player_name = game['goals'][-1]['scorer']['player']
                 try:
