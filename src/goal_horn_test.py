@@ -2,7 +2,7 @@
 Title: goal_horn_test.py
 Author: Peyton Ball
 Creation Date: 02/08/2020
-Last Modified: 02/08/2020
+Last Modified: 02/21/2020
 Purpose: Allows the user to enter a team abbreviation and test that the goal
          horn is accurate and can properly be located.
 '''

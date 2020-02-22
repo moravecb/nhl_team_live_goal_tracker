@@ -2,7 +2,7 @@
 Title: lights_api_handler.py
 Author: Peyton Ball
 Creation Date: 02/09/2020
-Last Modified: 02/09/2020
+Last Modified: 02/21/2020
 Purpose: Attempts to choose the 2 primary colors for the team specified in the
          method's parameter.
 '''
