@@ -44,10 +44,13 @@ def strobe_light(team_abbrv):
     payload_off = {"Power": "off"}
     payload_on = {"Power": "on"}
 
-    response = requests.post('https://api.lifx.com/v1/lights/all/effects/pulse', data=data, headers=headers)
-    #print(response.text)
-    #print(data)
-    #turn_on = requests.put('https://api.lifx.com/v1/lights/all/state', data=payload_on, headers=headers)
-    #lights_off = requests.put(url="https://api.lifx.com/v1/lights/all/state", data=payload_off, headers=headers)
+    try:
+        response = requests.post('https://api.lifx.com/v1/lights/all/effects/pulse', data=data, headers=headers)
+        #print(response.text)
+        #print(data)
+        #turn_on = requests.put('https://api.lifx.com/v1/lights/all/state', data=payload_on, headers=headers)
+        #lights_off = requests.put(url="https://api.lifx.com/v1/lights/all/state", data=payload_off, headers=headers)
+    except:
+        print("ERROR: No lights configured or invalid token.")
 
 strobe_light(team_name)
