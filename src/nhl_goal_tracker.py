@@ -19,7 +19,7 @@ def nhl_goal_tracker():
     global goal_horn
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--team', type=str, help="Enter team abbreviation.", default="NSH")
-    parser.add_argument('-r', '--refreshrate', type=int, help="Enter the time to wait before refreshing.", default=2)
+    parser.add_argument('-r', '--refreshrate', type=int, help="Enter the time to wait before refreshing.", default=5)
     parser.add_argument('-d', '--detailed', type=bool, help="Set to true if you want detailed info when fetching data.", default=False)
     args = parser.parse_args()
     team_name = args.team
