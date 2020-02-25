@@ -18,5 +18,5 @@
 - **team_color_selector.py**: Returns the 2 primary colors of the specified team.
 
 ## Goal Horn Songs Disclaimer:
-- I do not own the rights to any goal horns uploaded to this repo. ALl rights are reserved by the respective owner.
+- I do not own the rights to any goal horns uploaded to this repo. All rights are reserved by the respective owner.
 - Note: *"Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use."*
