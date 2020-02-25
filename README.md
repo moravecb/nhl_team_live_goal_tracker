@@ -1,5 +1,5 @@
 # nhl_team_live_goal_tracker
-- This tool actively fetches from a public API for updates on your team's goal and triggers the goal horn .mp3 you give it to play in the event of a goal. 
+- This tool actively fetches from a public API for updates on your team's goal and triggers the team's goal horn in the event of a goal. 
 - When the game ends, the updated record and points from a playoffs spot are displayed for your team. 
 - If you search for your team and they have already played, the win/loss status of your team will be displayed alongside your team's updated record and points from a playoffs spot.
 
