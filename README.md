@@ -6,6 +6,7 @@
 ## Parameters:
 - **-t (--team)**: Your team's abbreviation (e.g. NSH)
 - **-r (--refreshrate)**: The time to wait before refreshing and creating a new API request (e.g. 2)
+- **-d (--detailed)**: Provides detailed information about the game with each goal scored.
 
 ## Goal Horn Songs Disclaimer:
 - I do not own the rights to any goal horns uploaded to this repo. ALl rights are reserved by the respective owner.
